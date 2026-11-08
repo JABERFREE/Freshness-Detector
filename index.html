@@ -23,26 +23,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f9f9f9; color: #333; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        /* الهيدر */
         .header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid #eee; }
         .headerTitle { font-size: 22px; font-weight: bold; color: #2e7d32; }
         .langButton { padding: 6px 14px; background: #e8f5e9; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; color: #2e7d32; }
 
-        /* التبويبات */
         .tabBar { display: flex; background: #111; justify-content: center; padding: 10px; }
         .tabItem { padding: 8px 20px; border-radius: 20px; margin: 0 5px; cursor: pointer; background: transparent; border: none; color: #aaa; font-weight: 600; font-size: 14px; }
         .tabItem.active { background: #333; color: #fff; }
 
-        /* المحتوى */
         .content { flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; overflow-y: auto; padding-bottom: 80px; }
         .sectionContainer { width: 100%; max-width: 600px; text-align: center; margin-top: 20px; }
         .welcomeText { font-size: 18px; margin-bottom: 25px; color: #333; font-weight: 500; }
         
-        /* زر الفحص */
         .scanButton { background: #2e7d32; padding: 14px 24px; border-radius: 12px; border: none; cursor: pointer; width: 100%; color: #fff; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .scanButton:hover { background: #1b5e20; }
 
-        /* صندوق الكاميرا الوهمي / الفحص */
         .simulatedCameraBox { margin-top: 20px; padding: 20px; background: #e8f5e9; border-radius: 15px; width: 100%; border: 1px solid #c8e6c9; display: none; }
         .simulatedCameraBox.show { display: block; }
         .cameraCaptureButton { background: #2e7d32; color: #fff; padding: 12px; border-radius: 10px; border: none; width: 100%; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
@@ -51,7 +46,6 @@
         
         .resultBox { background: #fff; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid #c8e6c9; text-align: right; }
 
-        /* شريط الإعلانات السفلي الثابت */
         .adBannerContainer { position: absolute; bottom: 0; left: 0; right: 0; height: 55px; background: #eaeaea; border-top: 1px solid #ddd; display: flex; justify-content: center; align-items: center; z-index: 10; }
         .adBannerText { font-size: 12px; color: #666; font-weight: 600; }
 
@@ -60,32 +54,35 @@
 </head>
 <body>
 
-    <!-- الهيدر -->
     <div class="header">
         <div class="headerTitle" id="app-title">FreshScan</div>
         <button class="langButton" onclick="toggleLang()">EN</button>
     </div>
 
-    <!-- شريط التبويبات -->
     <div class="tabBar">
         <button class="tabItem active" id="tab-home" onclick="switchTab('Home')">الرئيسية</button>
         <button class="tabItem" id="tab-explore" onclick="switchTab('Explore')">استكشف</button>
         <button class="tabItem" id="tab-docs" onclick="switchTab('Docs')">الدليل</button>
     </div>
 
-    <!-- محتوى الصفحات -->
     <div class="content">
-        <!-- صفحة الرئيسية -->
         <div id="page-Home" class="sectionContainer">
             <div class="welcomeText" id="welcome-text">مرحباً بك في تطبيق FreshScan لفحص المنتجات الزراعية</div>
             <button class="scanButton" onclick="openScanner()" id="btn-start-scan">🔍 ابدأ فحص المنتج</button>
 
-            <!-- صندوق الفحص والكاميرا -->
             <div id="scanner-box" class="simulatedCameraBox">
                 <p id="scanner-instruction" style="margin-bottom: 12px; font-weight: bold; color: #2e7d32;">اختر طريقة التقاط المنتج للفحص:</p>
-                <button class="cameraCaptureButton" onclick="simulateScan('camera')" id="btn-cam">📸 التقاط صورة بالكاميرا وفحصها</button>
-                <button class="galleryButton" onclick="simulateScan('gallery')" id="btn-gal">📁 اختر صورة من المعرض وفحصها</button>
                 
+                <!-- زر الكاميرا الفعلي المبرمج لفتح كاميرا الهاتف -->
+                <button class="cameraCaptureButton" onclick="triggerCamera()" id="btn-cam">📸 التقاط صورة بالكاميرا وفحصها</button>
+                
+                <!-- زر المعرض الفعلي المبرمج لفتح ملفات الهاتف -->
+                <button class="galleryButton" onclick="triggerGallery()" id="btn-gal">📁 اختر صورة من المعرض وفحصها</button>
+                
+                <!-- عناصر مخفية لإدارة الملفات والكاميرا في المتصفح -->
+                <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleFileSelected(this)">
+                <input type="file" id="galleryInput" accept="image/*" style="display:none" onchange="handleFileSelected(this)">
+
                 <div id="loading-spinner" class="hidden" style="margin: 10px 0; color: #2e7d32; font-weight: bold;">
                     ⏳ جاري فحص المنتج بواسطة الذكاء الاصطناعي...
                 </div>
@@ -99,20 +96,17 @@
             </div>
         </div>
 
-        <!-- صفحة استكشف -->
         <div id="page-Explore" class="sectionContainer hidden">
             <h2 id="exp-title" style="margin-bottom: 10px; color: #222;">استكشف مميزات التطبيق</h2>
             <p id="exp-desc" style="color: #666; line-height: 22px;">يتيح لك FreshScan فحص جودة الخضروات والفواكه باستخدام تقنيات الذكاء الاصطناعي بسرعة وسهولة.</p>
         </div>
 
-        <!-- صفحة الدليل -->
         <div id="page-Docs" class="sectionContainer hidden">
             <h2 id="doc-title" style="margin-bottom: 10px; color: #222;">دليل الاستخدام</h2>
             <p id="doc-desc" style="color: #666; line-height: 22px;">قم بتوجيه الكاميرا نحو المنتج الزراعي للحصول على تقرير تفصيلي عن حالته.</p>
         </div>
     </div>
 
-    <!-- شريط الإعلانات السفلي الثابت -->
     <div class="adBannerContainer">
         <div class="adBannerText" id="ad-text">📢 مساحة إعلانية (Ad Banner)</div>
     </div>
@@ -176,21 +170,34 @@
             document.getElementById('result-box').classList.add('hidden');
         }
 
-        function simulateScan(type) {
-            const spinner = document.getElementById('loading-spinner');
-            const resultBox = document.getElementById('result-box');
-            const resultContent = document.getElementById('result-content');
-            
-            spinner.classList.remove('hidden');
-            resultBox.classList.add('hidden');
+        // تفعيل كاميرا الجوال مباشرة
+        function triggerCamera() {
+            document.getElementById('cameraInput').click();
+        }
 
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                resultBox.classList.remove('hidden');
-                resultContent.textContent = currentLang === 'ar' 
-                    ? '🟢 حالة المنتج: طازج بنسبة 98% - جودة ممتازة وصالح للاستهلاك.' 
-                    : '🟢 Status: 98% Fresh - Excellent quality, safe for consumption.';
-            }, 1500);
+        // تفعيل معرض الصور في الجوال
+        function triggerGallery() {
+            document.getElementById('galleryInput').click();
+        }
+
+        // التعامل مع الصورة المختارة وبدء الفحص الوهمي بالذكاء الاصطناعي
+        function handleFileSelected(input) {
+            if (input.files && input.files[0]) {
+                const spinner = document.getElementById('loading-spinner');
+                const resultBox = document.getElementById('result-box');
+                const resultContent = document.getElementById('result-content');
+                
+                spinner.classList.remove('hidden');
+                resultBox.classList.add('hidden');
+
+                setTimeout(() => {
+                    spinner.classList.add('hidden');
+                    resultBox.classList.remove('hidden');
+                    resultContent.textContent = currentLang === 'ar' 
+                        ? '🟢 تم رفع الصورة بنجاح! حالة المنتج: طازج بنسبة 98% - جودة ممتازة وصالح للاستهلاك.' 
+                        : '🟢 Image uploaded successfully! Status: 98% Fresh - Excellent quality, safe for consumption.';
+                }, 1500);
+            }
         }
     </script>
 </body>
