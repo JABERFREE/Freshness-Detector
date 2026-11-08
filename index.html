@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshScan - Freshness Detector</title>
+    <!-- 🚀 السطر الأهم لحل مشكلة المسارات في GitHub Pages -->
+    <base href="/Freshness-Detector/">
+    
+    <title data-rh="true">FreshScan - Freshness Detector</title>
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
     <!-- كود إعلانات HilltopAds -->
     <script>
@@ -19,179 +23,84 @@
     })({})
     </script>
 
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f9f9f9; color: #333; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-        
-        /* الهيدر */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #fff; border-bottom: 1px solid #eee; }
-        .headerTitle { font-size: 22px; font-weight: bold; color: #2e7d32; }
-        .langButton { padding: 6px 14px; background: #e8f5e9; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; color: #2e7d32; }
-
-        /* التبويبات */
-        .tabBar { display: flex; background: #111; justify-content: center; padding: 10px; }
-        .tabItem { padding: 8px 20px; border-radius: 20px; margin: 0 5px; cursor: pointer; background: transparent; border: none; color: #aaa; font-weight: 600; font-size: 14px; }
-        .tabItem.active { background: #333; color: #fff; }
-
-        /* المحتوى */
-        .content { flex: 1; padding: 20px; display: flex; flex-direction: column; align-items: center; overflow-y: auto; padding-bottom: 80px; }
-        .sectionContainer { width: 100%; max-width: 600px; text-align: center; margin-top: 20px; }
-        .welcomeText { font-size: 18px; margin-bottom: 25px; color: #333; font-weight: 500; }
-        
-        /* زر الفحص */
-        .scanButton { background: #2e7d32; padding: 14px 24px; border-radius: 12px; border: none; cursor: pointer; width: 100%; color: #fff; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .scanButton:hover { background: #1b5e20; }
-
-        /* صندوق الكاميرا الوهمي / الفحص */
-        .simulatedCameraBox { margin-top: 20px; padding: 20px; background: #e8f5e9; border-radius: 15px; width: 100%; border: 1px solid #c8e6c9; display: none; }
-        .simulatedCameraBox.show { display: block; }
-        .cameraCaptureButton { background: #2e7d32; color: #fff; padding: 12px; border-radius: 10px; border: none; width: 100%; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
-        .galleryButton { background: #1976d2; color: #fff; padding: 12px; border-radius: 10px; border: none; width: 100%; font-weight: bold; margin-bottom: 10px; cursor: pointer; }
-        .closeCameraButton { background: #c62828; color: #fff; padding: 10px; border-radius: 8px; border: none; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
-        .resultBox { background: #fff; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid #c8e6c9; text-align: right; }
-
-        /* شريط الإعلانات السفلي الثابت */
-        .adBannerContainer { position: absolute; bottom: 0; left: 0; right: 0; height: 55px; background: #eaeaea; border-top: 1px solid #ddd; display: flex; justify-content: center; align-items: center; z-index: 10; }
-        .adBannerText { font-size: 12px; color: #666; font-weight: 600; }
-
-        .hidden { display: none !important; }
+    <style id="expo-reset">
+      #root,body,html{height:100%}
+      body{overflow:hidden}
+      #root{display:flex}
     </style>
+    <style id="react-native-stylesheet">
+      [stylesheet-group="0"]{}
+      body{margin:0;}
+      button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+      html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+      input::-webkit-search-cancel-button,input::-webkit-search-decoration,input::-webkit-search-results-button,input::-webkit-search-results-decoration{display:none;}
+      [stylesheet-group="1"]{}
+      .css-11aywtz{-moz-appearance:textfield;-webkit-appearance:none;background-color:rgba(0,0,0,0.00);border-bottom-left-radius:0px;border-bottom-right-radius:0px;border-top-left-radius:0px;border-top-right-radius:0px;border:0 solid black;box-sizing:border-box;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0px;padding:0px;resize:none;}
+      .css-146c3p1{background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;color:rgba(0,0,0,1.00);display:inline;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;list-style:none;margin:0px;padding:0px;position:relative;text-align:start;text-decoration:none;white-space:pre-wrap;word-wrap:break-word;}
+      .css-1jxf684{background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;color:inherit;display:inline;font:inherit;list-style:none;margin:0px;padding:0px;position:relative;text-align:inherit;text-decoration:none;white-space:inherit;word-wrap:break-word;}
+      .css-9pa8cd{bottom:0px;height:100%;left:0px;opacity:0;position:absolute;right:0px;top:0px;width:100%;z-index:-1;}
+      .css-g5y9jx{align-content:flex-start;align-items:stretch;background-color:rgba(0,0,0,0.00);border:0 solid black;box-sizing:border-box;display:flex;flex-basis:auto;flex-direction:column;flex-shrink:0;list-style:none;margin:0px;min-height:0px;min-width:0px;padding:0px;position:relative;text-decoration:none;z-index:0;}
+      [stylesheet-group="2"]{}
+      .r-13awgt0{flex:1;}
+      .r-14lw9ot{background-color:rgba(255,255,255,1.00);}
+      .r-1fn3lry{border-bottom-color:rgba(238,238,238,1.00);}
+      .r-qklmqi{border-bottom-width:1px;}
+      .r-18u37iz{flex-direction:row;}
+      .r-1wtj0ep{justify-content:space-between;}
+      .r-1ml3abn{padding-bottom:14px;padding-top:14px;}
+      .r-u9wvl5{padding-left:20px;padding-right:20px;}
+      .r-ou2hiw{color:rgba(46,125,50,1.00);}
+      .r-evnaw{font-size:22px;}
+      .r-vw2c0b{font-weight:bold;}
+      .r-ep8a71{background-color:rgba(17,17,17,1.00);}
+      .r-1777fci{justify-content:center;}
+      .r-ytbthy{padding-bottom:10px;padding-top:10px;}
+      .r-150rngu{-webkit-overflow-scrolling:touch;}
+      .r-eqz5dr{flex-direction:column;}
+      .r-16y2uox{flex-grow:1;}
+      .r-1wbh5a2{flex-shrink:1;}
+      .r-11yh6sk{overflow-x:hidden;}
+      .r-1rnoaur{overflow-y:auto;}
+      .r-agouwx{transform:translateZ(0);}
+      .r-1awozwy{align-items:center;}
+      .r-1pcd2l5{padding:20px;}
+      .r-1jnzvcq{padding-bottom:80px;}
+      .r-1x0uki6{margin-top:20px;}
+      .r-13qz1uu{width:100%;}
+      .r-1khnkhu{color:rgba(51,51,51,1.00);}
+      .r-1i10wst{font-size:18px;}
+      .r-majxgm{font-weight:500;}
+      .r-eektet{margin-bottom:25px;}
+      .r-q4m81j{text-align:center;}
+      .r-1i6wzkk{-moz-transition-property:opacity;-webkit-transition-property:opacity;transition-property:opacity;}
+      .r-lrvibr{-moz-user-select:none;-webkit-user-select:none;user-select:none;}
+      .r-1loqt21{cursor:pointer;}
+      .r-1otgn73{touch-action:manipulation;}
+      .r-1dvtpvq{background-color:rgba(46,125,50,1.00);}
+      .r-1q9bdsx{border-bottom-left-radius:12px;border-bottom-right-radius:12px;border-top-left-radius:12px;border-top-right-radius:12px;}
+      .r-cxgwc0{padding-left:24px;padding-right:24px;}
+      .r-jwli3a{color:rgba(255,255,255,1.00);}
+      .r-ubezar{font-size:16px;}
+      .r-nn4mi6{background-color:rgba(234,234,234,1.00);}
+      .r-yr9ygz{border-top-color:rgba(221,221,221,1.00);}
+      .r-5kkj8d{border-top-width:1px;}
+      .r-1p0dtai{bottom:0px;}
+      .r-8oi148{height:55px;}
+      .r-1d2f490{left:0px;}
+      .r-u8s1d{position:absolute;}
+      .r-zchlnj{right:0px;}
+      .r-mhe3cw{z-index:10;}
+      .r-djgu52{color:rgba(102,102,102,1.00);}
+      .r-1enofrn{font-size:12px;}
+      .r-1kfrs79{font-weight:600;}
+    </style>
+    
+    <script type="module">globalThis.__EXPO_ROUTER_HYDRATE__=true;</script>
+    <link rel="preload" href="_expo/static/css/global-87fd0564cfa78f37afcb8d7603e15d75.css" as="style">
+    <link rel="stylesheet" href="_expo/static/css/global-87fd0564cfa78f37afcb8d7603e15d75.css">
 </head>
 <body>
-
-    <!-- الهيدر -->
-    <div class="header">
-        <div class="headerTitle" id="app-title">FreshScan</div>
-        <button class="langButton" onclick="toggleLang()">EN</button>
-    </div>
-
-    <!-- شريط التبويبات -->
-    <div class="tabBar">
-        <button class="tabItem active" id="tab-home" onclick="switchTab('Home')">الرئيسية</button>
-        <button class="tabItem" id="tab-explore" onclick="switchTab('Explore')">استكشف</button>
-        <button class="tabItem" id="tab-docs" onclick="switchTab('Docs')">الدليل</button>
-    </div>
-
-    <!-- محتوى الصفحات -->
-    <div class="content">
-        <!-- صفحة الرئيسية -->
-        <div id="page-Home" class="sectionContainer">
-            <div class="welcomeText" id="welcome-text">مرحباً بك في تطبيق FreshScan لفحص المنتجات الزراعية</div>
-            <button class="scanButton" onclick="openScanner()" id="btn-start-scan">🔍 ابدأ فحص المنتج</button>
-
-            <!-- صندوق الفحص والكاميرا -->
-            <div id="scanner-box" class="simulatedCameraBox">
-                <p id="scanner-instruction" style="margin-bottom: 12px; font-weight: bold; color: #2e7d32;">اختر طريقة التقاط المنتج للفحص:</p>
-                <button class="cameraCaptureButton" onclick="simulateScan('camera')" id="btn-cam">📸 التقاط صورة بالكاميرا وفحصها</button>
-                <button class="galleryButton" onclick="simulateScan('gallery')" id="btn-gal">📁 اختر صورة من المعرض وفحصها</button>
-                
-                <div id="loading-spinner" class="hidden" style="margin: 10px 0; color: #2e7d32; font-weight: bold;">
-                    ⏳ جاري فحص المنتج بواسطة الذكاء الاصطناعي...
-                </div>
-
-                <div id="result-box" class="resultBox hidden">
-                    <strong>نتيجة الفحص:</strong>
-                    <p id="result-content" style="font-size: 13px; margin-top: 5px; color: #2e7d32;"></p>
-                </div>
-
-                <button class="closeCameraButton" onclick="closeScanner()" id="btn-close">إغلاق نافذة الفحص</button>
-            </div>
-        </div>
-
-        <!-- صفحة استكشف -->
-        <div id="page-Explore" class="sectionContainer hidden">
-            <h2 id="exp-title" style="margin-bottom: 10px; color: #222;">استكشف مميزات التطبيق</h2>
-            <p id="exp-desc" style="color: #666; line-height: 22px;">يتيح لك FreshScan فحص جودة الخضروات والفواكه باستخدام تقنيات الذكاء الاصطناعي بسرعة وسهولة.</p>
-        </div>
-
-        <!-- صفحة الدليل -->
-        <div id="page-Docs" class="sectionContainer hidden">
-            <h2 id="doc-title" style="margin-bottom: 10px; color: #222;">دليل الاستخدام</h2>
-            <p id="doc-desc" style="color: #666; line-height: 22px;">قم بتوجيه الكاميرا نحو المنتج الزراعي للحصول على تقرير تفصيلي عن حالته.</p>
-        </div>
-    </div>
-
-    <!-- شريط الإعلانات السفلي الثابت -->
-    <div class="adBannerContainer">
-        <div class="adBannerText" id="ad-text">📢 مساحة إعلانية (Ad Banner)</div>
-    </div>
-
-    <script>
-        let currentLang = 'ar';
-
-        function toggleLang() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const btn = document.querySelector('.langButton');
-            btn.textContent = currentLang === 'ar' ? 'EN' : 'عربي';
-
-            if (currentLang === 'en') {
-                document.getElementById('welcome-text').textContent = 'Welcome to FreshScan Agricultural Produce Inspector';
-                document.getElementById('btn-start-scan').textContent = '🔍 Start Product Scan';
-                document.getElementById('scanner-instruction').textContent = 'Choose capture method for inspection:';
-                document.getElementById('btn-cam').textContent = '📸 Capture with Camera & Inspect';
-                document.getElementById('btn-gal').textContent = '📁 Choose from Gallery & Inspect';
-                document.getElementById('btn-close').textContent = 'Close Scanner';
-                document.getElementById('tab-home').textContent = 'Home';
-                document.getElementById('tab-explore').textContent = 'Explore';
-                document.getElementById('tab-docs').textContent = 'Docs';
-                document.getElementById('exp-title').textContent = 'Explore Features';
-                document.getElementById('exp-desc').textContent = 'FreshScan allows you to inspect the quality of fruits and vegetables using AI technologies quickly and easily.';
-                document.getElementById('doc-title').textContent = 'Documentation';
-                document.getElementById('doc-desc').textContent = 'Point the camera towards the agricultural product to get a detailed report on its condition.';
-                document.getElementById('ad-text').textContent = '📢 Ad Space (Banner)';
-            } else {
-                document.getElementById('welcome-text').textContent = 'مرحباً بك في تطبيق FreshScan لفحص المنتجات الزراعية';
-                document.getElementById('btn-start-scan').textContent = '🔍 ابدأ فحص المنتج';
-                document.getElementById('scanner-instruction').textContent = 'اختر طريقة التقاط المنتج للفحص:';
-                document.getElementById('btn-cam').textContent = '📸 التقاط صورة بالكاميرا وفحصها';
-                document.getElementById('btn-gal').textContent = '📁 اختر صورة من المعرض وفحصها';
-                document.getElementById('btn-close').textContent = 'إغلاق نافذة الفحص';
-                document.getElementById('tab-home').textContent = 'الرئيسية';
-                document.getElementById('tab-explore').textContent = 'استكشف';
-                document.getElementById('tab-docs').textContent = 'الدليل';
-                document.getElementById('exp-title').textContent = 'استكشف مميزات التطبيق';
-                document.getElementById('exp-desc').textContent = 'يتيح لك FreshScan فحص جودة الخضروات والفواكه باستخدام تقنيات الذكاء الاصطناعي بسرعة وسهولة.';
-                document.getElementById('doc-title').textContent = 'دليل الاستخدام';
-                document.getElementById('doc-desc').textContent = 'قم بتوجيه الكاميرا نحو المنتج الزراعي للحصول على تقرير تفصيلي عن حالته.';
-                document.getElementById('ad-text').textContent = '📢 مساحة إعلانية (Ad Banner)';
-            }
-        }
-
-        function switchTab(tabName) {
-            ['Home', 'Explore', 'Docs'].forEach(t => {
-                document.getElementById('page-' + t).classList.add('hidden');
-                document.getElementById('tab-' + t.toLowerCase()).classList.remove('active');
-            });
-            document.getElementById('page-' + tabName).classList.remove('hidden');
-            document.getElementById('tab-' + tabName.toLowerCase()).classList.add('active');
-        }
-
-        function openScanner() {
-            document.getElementById('scanner-box').classList.add('show');
-        }
-
-        function closeScanner() {
-            document.getElementById('scanner-box').classList.remove('show');
-            document.getElementById('result-box').classList.add('hidden');
-        }
-
-        function simulateScan(type) {
-            const spinner = document.getElementById('loading-spinner');
-            const resultBox = document.getElementById('result-box');
-            const resultContent = document.getElementById('result-content');
-            
-            spinner.classList.remove('hidden');
-            resultBox.classList.add('hidden');
-
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                resultBox.classList.remove('hidden');
-                resultContent.textContent = currentLang === 'ar' 
-                    ? '🟢 حالة المنتج: طازج بنسبة 98% - جودة ممتازة وصالح للاستهلاك.' 
-                    : '🟢 Status: 98% Fresh - Excellent quality, safe for consumption.';
-            }, 1500);
-        }
-    </script>
+<div id="root"></div>
+<script src="_expo/static/js/web/entry-2c5dc02add9cb112ad1040f2188ca693.js" defer></script>
 </body>
 </html>
